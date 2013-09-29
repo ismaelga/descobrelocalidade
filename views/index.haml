@@ -1,0 +1,40 @@
+- if @flash
+  = @flash
+
+%form{:action => '/procura', :method => 'get', :class => "form-horizontal"}
+
+  %div{:class=>"control-group"}
+    %label{:class=>"control-label", :for=>"letters"} Letras
+    %div{:class=>"controls"}
+      %input{:name => 'letras', :type=>"text", :id=>"letters", :class => "letras", :value => @letters_tried}
+
+  %div{:class=>"control-group"}
+    %label{:class=>"control-label", :for=>"todas"} São todas as letras
+    %div{:class=>"controls"}
+      %input{:type => 'checkbox', :id=>"todas", :name => 'todas', :value => @todas, :checked => @todas}
+
+  %div{:class=>"control-group"}
+    %label{:class=>"control-label", :for=>"palavras"} Palavras
+    %div{:class=>"controls"}
+      %select{:name => 'palavras', :id=>"palavras", :style=>"width: 70px;"}
+        %option
+          - (1..10).each do |num|
+            %option{value: num, selected: (num == @palavras)}= num
+
+  %div{:class=>"control-group"}
+    %div{:class=>"controls"}
+      %input{:type => 'submit', :class => 'btn btn-success btn-large', :value => 'Procurar'}
+
+- if @letters_tried
+  %div{:class=> 'hero-unit'}
+    %h3 Tentou: "#{@letters_tried}"
+    - if @solutions && @solutions.size > 0
+      %h4 #{@solutions.size} Localidades encontradas com as letras
+      %ul
+        - @solutions.each do |solution|
+          %li
+            %h5
+              %a{:target => '_blank', :href => "https://maps.google.com/maps?q=#{solution},Portugal&zoom=14&sensor=false"}= solution
+
+    - else
+      %h4 Oops... Não há soluções
