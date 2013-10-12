@@ -8,3 +8,7 @@
 ```
 $ bundle exec rackup config.ru
 ````
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ismaelga/descobrelocalidade/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
